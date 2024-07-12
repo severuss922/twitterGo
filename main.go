@@ -47,7 +47,7 @@ func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (
 	}
 	//ojo por si falla
 
-	path := strings.Replace(request.PathParameters["twittergo"], os.Getenv("UrlPrefix"), "", -1)
+	path := strings.Replace(request.PathParameters["twitter"], os.Getenv("UrlPrefix"), "", -1)
 
 	fmt.Printf("> reuqest: ")
 	fmt.Println(request.PathParameters)

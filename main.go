@@ -46,12 +46,13 @@ func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (
 		return res, nil
 	}
 	//ojo por si falla
-	fmt.Println("> bandera de prueba inicio")
+
 	path := strings.Replace(request.PathParameters["twittergo"], os.Getenv("UrlPrefix"), "", -1)
-	fmt.Println("> bandera de prueba fin")
+
+	fmt.Println("> request.PathParameters: " + request.PathParameters["twittergo"])
+	fmt.Println("> os.Getenv('UrlPrefix'): " + os.Getenv("UrlPrefix"))
 
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("path"), path)
-	fmt.Println(">antes de conectar base Path: " + models.Key("path"))
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("method"), request.HTTPMethod)
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("user"), SecretModel.Username)
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("password"), SecretModel.Password)
@@ -61,8 +62,6 @@ func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("body"), request.Body)
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("bucketName"), os.Getenv("BucketName"))
 
-	fmt.Printf("< contexto: ")
-	fmt.Println(awsgo.Ctx)
 	//chequeo conexion a la BD o conecto la base de datos
 
 	err = bd.ConectarBD(awsgo.Ctx)

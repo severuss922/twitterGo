@@ -14,7 +14,7 @@ func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) mod
 	fmt.Println("> Voy a procesar " + ctx.Value(models.Key("path")).(string) + " - " + ctx.Value(models.Key("method")).(string))
 
 	var r models.RespApi
-	r.Status = 400
+	r.Status = 404
 
 	isOk, statusCode, msg, _ := validoAuthorization(ctx, request)
 

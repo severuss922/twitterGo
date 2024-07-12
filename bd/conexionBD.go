@@ -28,7 +28,7 @@ func ConectarBD(ctx context.Context) error {
 
 	err = client.Ping(ctx, nil)
 	if err != nil {
-		fmt.Println(err.Error())
+		fmt.Println("> Error en conexion del cliente" + err.Error())
 		return err
 	}
 

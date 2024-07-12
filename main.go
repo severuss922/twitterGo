@@ -50,7 +50,7 @@ func EjecutoLambda(ctx context.Context, request events.APIGatewayProxyRequest) (
 	path := strings.Replace(request.PathParameters["twittergo"], os.Getenv("UrlPrefix"), "", -1)
 
 	fmt.Printf("> reuqest: ")
-	fmt.Println(request)
+	fmt.Println(request.PathParameters)
 
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("path"), path)
 	awsgo.Ctx = context.WithValue(awsgo.Ctx, models.Key("method"), request.HTTPMethod)

@@ -11,6 +11,7 @@ import (
 )
 
 func Manejadores(ctx context.Context, request events.APIGatewayProxyRequest) models.RespApi {
+	fmt.Println("> antes de procesar muestro path: " + ctx.Value(models.Key("path")).(string))
 	fmt.Println("> Voy a procesar " + ctx.Value(models.Key("path")).(string) + " - " + ctx.Value(models.Key("method")).(string))
 
 	var r models.RespApi
